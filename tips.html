@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+ 
+<body>
+    <title>Supriya tips.html page</title>
+
+<h2>Supriya shows tip amounts</h2>
+    <label for="baseAmount">Enter base amount:</label>
+    <input type="number" id="baseAmount" value="50"><br>
+
+    <label for="tipPercent">Enter the tip percent:</label>
+    <input type="number" id="tipPercent" value="15"><br>
+
+    <input type="button" value="Show tip" onclick="tips()"><br>
+
+    <div id="output"></div>
+
+    <script>
+        function tips() {
+            const baseValue = parseFloat(document.getElementById('baseAmount').value);
+            const tipPercent = parseFloat(document.getElementById('tipPercent').value);
+            let toShow = 'Tips are: ';
+
+            for (let i = 0; i < 5; i++) {
+                const tipAmount = (baseValue * (tipPercent + (i * 4))) / 100;
+                toShow += `${tipPercent + (i * 4)}% is ${tipAmount.toFixed(2)}; `;
+            }
+
+            document.getElementById('output').innerHTML = toShow;
+        }
+    </script>
+
+</body>
+</html> 
