@@ -37,8 +37,32 @@
             document.getElementById("goodCount").textContent = good;
             document.getElementById("oopsCount").textContent = oops;
         }
+    </script>
+    
+    <div id="imageContainer">
+        <img id="cityImage" src="Alabama city.jpg" alt="City Image" width="100" height="100" onclick="selectImage()">
+    </div>
 
-
+    <script>
+        var useImage = 1;
+        function selectImage() {
+            switch (useImage) {
+                case 1:
+                    document.getElementById("cityImage").src = "Indianapolis city.jpg";
+                    useImage = 2;
+                    break;
+                case 2:
+                    document.getElementById("cityImage").src = "jacksonville city.jpg";
+                    useImage = 3;
+                    break;
+                case 3:
+                    document.getElementById("cityImage").src = "Alabama city.jpg";
+                    useImage = 1;
+                    break;
+                default:
+                    break;
+            }
+        }
     </script>
 
 </body>
