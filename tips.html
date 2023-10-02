@@ -29,6 +29,57 @@
             document.getElementById('output').innerHTML = toShow;
         }
     </script>
+    <form>
+        <label for="sum">Sum</label>
+        <input type="radio" id="sum" name="operation" value="sum" onclick="chooseOp()">
+
+        <label for="difference">Difference</label>
+        <input type="radio" id="difference" name="operation" value="difference" onclick="chooseOp()">
+
+        <label for="product">Product</label>
+        <input type="radio" id="product" name="operation" value="product" onclick="chooseOp()">
+    </form>
+    
+    <div id="output"></div>
+
+    <script>
+        function tips() {
+            const baseValue = parseFloat(document.getElementById('baseAmount').value);
+            const tipPercent = parseFloat(document.getElementById('tipPercent').value);
+            let toShow = 'Tips are: ';
+
+            for (let i = 0; i < 5; i++) {
+                const tipAmount = (baseValue * (tipPercent + (i * 4))) / 100;
+                toShow += `${tipPercent + (i * 4)}% is ${tipAmount.toFixed(2)}; `;
+            }
+
+            document.getElementById('output').innerHTML = toShow;
+        }
+
+        function chooseOp() {
+            const baseValue = parseFloat(document.getElementById('baseAmount').value);
+            const tipPercent = parseFloat(document.getElementById('tipPercent').value);
+            const selectedOperation = document.querySelector('input[name="operation"]:checked').value;
+
+            let resultText;
+
+            switch (selectedOperation) {
+                case "sum":
+                    resultText = `Sum of ${baseValue} and ${tipPercent} is ${baseValue + tipPercent}`;
+                    break;
+                case "difference":
+                    resultText = `Difference between ${baseValue} and ${tipPercent} is ${baseValue - tipPercent}`;
+                    break;
+                case "product":
+                    resultText = `Product of ${baseValue} and ${tipPercent} is ${baseValue * tipPercent}`;
+                    break;
+                default:
+                    resultText = "Select an operation";
+            }
+
+            document.getElementById('output').innerHTML = resultText;
+        }
+    </script>
 
 </body>
 </html> 
