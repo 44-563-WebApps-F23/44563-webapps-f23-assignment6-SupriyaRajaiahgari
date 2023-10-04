@@ -37,6 +37,25 @@
         document.getElementById('result').innerHTML = JSON.stringify(my_cruise);
     }
 </script>
+<form>
+    <label for="daysInput">Enter the number of days</label>
+    <input type="text" id="daysInput" value="">
+
+    <label for="priceInput">Enter price</label>
+    <input type="text" id="priceInput" value="">
+
+    <button onclick="updateCruise()">Update the cruise</button>
+</form>
+
+<script>
+    function updateCruise() {
+        const days = document.getElementById('daysInput').value;
+        const price = document.getElementById('priceInput').value;
+        my_cruise.days = days;
+        my_cruise.price = price;
+        document.getElementById('result').innerHTML = JSON.stringify(my_cruise);
+    }
+</script>
 
 </body>
 </html> 
