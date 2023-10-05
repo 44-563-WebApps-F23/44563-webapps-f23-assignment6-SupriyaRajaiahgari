@@ -1,70 +1,82 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Supriya Lab05 Creating a Page for Author</title>
-</head>
-
+ <head>
+    <title>Supriya Assignment 6 author.html</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" 
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" 
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+ </head>
 <body>
 
-    <h2>Author entry Panyala Rajaiahgari Supriya</h2>
+<h2>Author entry Panyala Rajaiahgari Supriya</h2>
 
-    <form>
-        <label for="hiddenAuthor">The hidden author name</label>
-        <input type="password" id="hiddenAuthor" value="Dickens" required><br><br>
-        <label for="guessingAuthor">Guess the author</label>
-        <input type="text" id="guessingAuthor" required> <br><br>
-        <input type="button" value="Check the guess" onclick="checkAuthor()">
-    </form>
-    <div id="result">
-        <p>Good guesses: <span id="goodCount">0</span></p>
-        <p>Incorrect guesses: <span id="oopsCount">0</span></p>
+<form>
+    <div class="form-group">
+    <label for="password_assign">The hidden author name</label>
+    <input type ="password" id="password_assign" value="Dickens" min=10 max=50 step=2 value=30><br><br>
     </div>
+    <div class="form-group">
+    <label for="Author_name">Guess the author</label>
+    <input type ="text" id="Author_name" autofocus><br><br>
+    </div>
+    <input type="button" id="button" onclick="checkAuthor()" value="Check the guess">
 
-    <script>
-        var good = 0;
-        var oops = 0;
-        function checkAuthor() {
-            var hiddenAuthor = document.getElementById("hiddenAuthor").value;
-            var guessingAuthor = document.getElementById("guessingAuthor").value;
-            if (hiddenAuthor === guessingAuthor) {
-                good++;
-                alert("You got it right!");
-            } else {
-                oops++;
-                alert("Sorry.");
-            }
-            document.getElementById("goodCount").textContent = good;
-            document.getElementById("oopsCount").textContent = oops;
-        }
-    </script>
+</form>
+<p class="text-left" id="results">The result will be displayed</p>
+<script>
+
+var good =0;
+var oops =0;
+function checkAuthor(){
+    console.log("Getting form values")
+    password_assign = document.getElementById("password_assign").value;
+    Author_name = document.getElementById("Author_name").value;
     
-    <div id="imageContainer">
-        <img id="cityImage" src="Alabama city.jpg" alt="City Image" width="100" height="100" onclick="selectImage()">
-    </div>
-
-    <script>
-        var useImage = 1;
-        function selectImage() {
-            switch (useImage) {
-                case 1:
-                    document.getElementById("cityImage").src = "Indianapolis city.jpg";
-                    useImage = 2;
-                    break;
-                case 2:
-                    document.getElementById("cityImage").src = "jacksonville city.jpg";
-                    useImage = 3;
-                    break;
-                case 3:
-                    document.getElementById("cityImage").src = "Alabama city.jpg";
-                    useImage = 1;
-                    break;
-                default:
-                    break;
-            }
+    if(oops==7){
+      alert("Sorry, ran out of guesses.");
+      document.getElementById("results").innerHTML="Sorry, ran out of guesses";
+      document.getElementById("button").style.visibility = 'hidden'; 
+    }
+    else if(password_assign === Author_name){
+        good++;
+        alert("You got it right");
+        results = document.getElementById("results").innerHTML =`right: ${good}, wrong: ${oops}`;
+    } 
+    else {
+        oops++;
+        alert("Sorry");
+        results = document.getElementById("results").innerHTML =`right: ${good}, wrong: ${oops}`;
+    }
+}
+</script>
+<div class="text-center">
+    <img id="cityImage" style="height: 100px; width: 100px;" src="Alabama city.jpg" alt="Image of the cities" onclick="selectImage()">
+</div>
+<script>
+    var useImage = 1;
+    function selectImage() {
+        var image = document.getElementById("cityImage");
+        switch (useImage) {
+            case 1:
+                image.src = "Indianapolis city.jpg";
+                useImage = 2;
+                break;
+            case 2:
+                image.src = "jacksonville city.jpg";
+                useImage = 3;
+                break;
+            default:
+                image.src  = "Alabama city.jpg";
+                useImage = 1;
         }
-    </script>
+    }
+</script>
 
 </body>
-
 </html>
